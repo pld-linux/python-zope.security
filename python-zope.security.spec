@@ -3,7 +3,7 @@
 %bcond_without	doc	# Sphinx documentation
 %bcond_without	tests	# unit tests
 %bcond_without	python2 # CPython 2.x module
-%bcond_without	python3 # CPython 3.x module
+%bcond_with	python3 # CPython 3.x module (built from python3-zope.security.spec)
 
 %define module	zope.security
 Summary:	Zope Security framework
@@ -58,14 +58,14 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	sed >= 4.0
 %if %{with doc}
-BuildRequires:	python3-repoze.sphinx.autointerface
-BuildRequires:	python3-zope.component
-BuildRequires:	python3-zope.i18nmessageid
-BuildRequires:	python3-zope.interface
-BuildRequires:	python3-zope.location
-BuildRequires:	python3-zope.proxy >= 4.3.0
-BuildRequires:	python3-zope.schema >= 4.2.0
-BuildRequires:	sphinx-pdg-3
+BuildRequires:	python-repoze.sphinx.autointerface
+BuildRequires:	python-zope.component
+BuildRequires:	python-zope.i18nmessageid
+BuildRequires:	python-zope.interface
+BuildRequires:	python-zope.location
+BuildRequires:	python-zope.proxy >= 4.3.0
+BuildRequires:	python-zope.schema >= 4.2.0
+BuildRequires:	sphinx-pdg-2
 %endif
 Requires:	python-modules >= 1:2.7
 Obsoletes:	Zope-Proxy < 3.5.0
@@ -132,7 +132,7 @@ zope-testrunner-3 --test-path=src -v
 %if %{with doc}
 PYTHONPATH=$(pwd)/src \
 %{__make} -C docs html \
-	SPHINXBUILD=sphinx-build-3
+	SPHINXBUILD=sphinx-build-2
 %endif
 
 %install
